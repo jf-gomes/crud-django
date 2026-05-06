@@ -1,0 +1,22 @@
+<h1>Bem-vindo(a), {{ user.username }}!</h1>
+<p><a href="{% url 'logout' %}">Sair</a></p>
+
+<h3>Seus registros:</h3>
+<ul>
+    {% for registro in object_list %}
+        <li>
+            <strong>{{ registro.titulo }}</strong> - {{ registro.descricao }}
+            <a href="{% url 'registro_update' registro.id %}">[Editar]</a>
+            
+            {% if user.is_superuser %}
+                <a href="{% url 'registro_delete' registro.id %}" style="color: red;">[Excluir]</a>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>Nenhum registro encontrado.</li>
+    {% endfor %}
+</ul>
+
+<hr>
+<h3>Dados vindos da API Flask:</h3>
+<pre>{{ api_data }}</pre>

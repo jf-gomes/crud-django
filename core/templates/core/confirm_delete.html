@@ -1,0 +1,9 @@
+<h2>Confirma exclusão?</h2>
+<p>Registro a ser excluído: <strong>{{ object.titulo }}</strong></p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" style="background-color: red; color: white;">Confirmar</button>
+</form>
+<br>
+<a href="{% url 'home' %}">Cancelar</a>
