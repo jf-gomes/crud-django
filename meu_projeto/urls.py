@@ -20,12 +20,13 @@ from django.urls import path
 
 # importação das views
 from django.contrib.auth import views as auth_views
-from core.views import RegistroListView, RegistroUpdateView, RegistroDeleteView
+from core.views import RegistroListView, RegistroUpdateView, RegistroDeleteView, login_cadastro_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
+    #path('login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
+    path('login/', login_cadastro_view, name='login'), # tela de login mostra os formulários de login e cadastro.
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', RegistroListView.as_view(), name='home'),
     path('editar/<int:pk>/', RegistroUpdateView.as_view(), name='registro_update'),

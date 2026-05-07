@@ -1,6 +1,141 @@
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Entrar</button>
-</form>
+<style>
+    body {
+        background-color: #f8f9fa;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        max-width: 900px;
+        width: 100%;
+    }
+
+    .forms-wrapper {
+        display: flex; 
+        gap: 60px;
+        justify-content: space-between;
+    }
+
+    .form-section {
+        flex: 1;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+    /* Estilizando os inputs gerados pelo Django */
+    form p {
+        margin-bottom: 15px;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        box-sizing: border-box; /* Garante que o padding não quebre a largura */
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+        margin-top: 10px;
+    }
+
+    button[name="btn_login"] {
+        background-color: #007bff;
+        color: white;
+    }
+
+    button[name="btn_login"]:hover {
+        background-color: #0056b3;
+    }
+
+    button[name="btn_cadastro"] {
+        background-color: #28a745;
+        color: white;
+    }
+
+    button[name="btn_cadastro"]:hover {
+        background-color: #218838;
+    }
+
+    .divider {
+        border-left: 1px solid #eee;
+    }
+
+    footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #777;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+    }
+
+    footer a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    /* Responsividade para celulares */
+    @media (max-width: 600px) {
+        .forms-wrapper {
+            flex-direction: column;
+            gap: 40px;
+        }
+        .divider {
+            border-left: none;
+            border-top: 1px solid #eee;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="forms-wrapper">
+        
+        <div class="form-section">
+            <h2>Já tenho conta</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form_login.as_p }}
+                <button type="submit" name="btn_login">Entrar</button>
+            </form>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="form-section">
+            <h2>Criar nova conta</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form_cadastro.as_p }}
+                <button type="submit" name="btn_cadastro">Criar conta</button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Projeto criado para a disciplina Desenvolvimento de Aplicações de Software</p>
+        <p>
+            Aluno: <a href="https://github.com/jf-gomes" target="_blank">João Víctor Feitosa Gomes</a>
+        </p>
+    </footer>
+</div>

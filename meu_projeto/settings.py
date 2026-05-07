@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Sempre logo após o SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'meu_projeto.wsgi.application'
 # ===== NOVA CONEXAO COM O POSTGRES =====
 
 if 'RENDER' in os.environ:
-    # Configuração para o Render (Produção)
+    # configurações para conexão do DB em produção (Render).
     DATABASES = {
         'default': dj_database_url.config(
             conn_max_age=600,
@@ -107,13 +107,13 @@ if 'RENDER' in os.environ:
         )
     }
 else:
-    # Configuração para sua máquina (Local)
+    # configurações para conexão do DB em desenvolvimento.
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'meu_projeto_db',
             'USER': 'postgres',
-            'PASSWORD': 'sua_senha_aqui', # Mantenha sua senha local
+            'PASSWORD': os.environ.get('LOCAL_DB_PASSWORD'),
             'HOST': 'localhost',
             'PORT': '5432',
         }

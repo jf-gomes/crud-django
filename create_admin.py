@@ -6,7 +6,6 @@ django.setup()
 
 from django.contrib.auth.models import User
 
-# Pegando os dados de variáveis de ambiente para segurança
 username = os.environ.get('DJANGO_SUPERUSER_USERNAME', 'admin')
 email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@email.com')
 password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'senha_dificil_123')
